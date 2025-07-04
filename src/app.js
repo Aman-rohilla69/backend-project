@@ -10,12 +10,11 @@ app.use(
   })
 );
 //cors use
-app.use(express.json({limit:"20kb"})); // Parse JSON bodies
-app.use(express.urlencoded({ extended: true, limit:"20kb" })); // Parse URL-encoded bodies
+app.use(express.json({ limit: "20kb" })); // Parse JSON bodies
+app.use(express.urlencoded({ extended: true, limit: "20kb" })); // Parse URL-encoded bodies
 app.use(cookieParser()); // Parse cookies
 app.use(express.static("public")); // Serve static files from the "public" directory
 
 //middleware use
-
 
 export default app;
