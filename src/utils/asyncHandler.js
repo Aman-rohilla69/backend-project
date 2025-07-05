@@ -2,7 +2,7 @@
 
 const asyncHandler = (requestHandler) => {
   (req, res, next) => {
-    Promise
+    Promise    // create a promise used for async operations
       .resolve(requestHandler(req, res, next))
       .catch((err) => next(err));
   };
