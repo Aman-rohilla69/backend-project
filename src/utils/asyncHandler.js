@@ -1,9 +1,9 @@
 // use of promisses
 
 const asyncHandler = (requestHandler) => {
-  (req, res, next) => {
-    Promise    // create a promise used for async operations
-      .resolve(requestHandler(req, res, next))
+  //high order function
+ return (req, res, next) => {
+    Promise.resolve(requestHandler(req, res, next)) // create a promise used for async operations
       .catch((err) => next(err));
   };
 };
