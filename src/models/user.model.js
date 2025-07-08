@@ -25,7 +25,7 @@ const userSchema = new Schema(
       trim: true,
       index: true,
     },
-    avtar: {
+    avatar: {
       type: String, //cloudnary url store here
       required: true,
     },
@@ -49,7 +49,7 @@ userSchema.pre("save", async function (next) {
   // Check if the password is modified before hashing
   if (!this.isModified("password")) return next();
   else {
-    this.password = bcrypt.hash(this.password, 10); //bcrypt hash function to hash(encrypt) the password
+    this.password = await bcrypt.hash(this.password, 10); //bcrypt hash function to hash(encrypt) the password
     next(); // call next middleware in the stack
   }
 });
