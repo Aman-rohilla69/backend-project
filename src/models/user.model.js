@@ -30,9 +30,11 @@ const userSchema = new Schema(
       required: true,
     },
     coverImage: {
+      //cloudnary url store here
       type: String,
     },
     watchHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
+
     password: {
       type: String,
       required: [true, "password is required"],
@@ -49,13 +51,16 @@ userSchema.pre("save", async function (next) {
   // Check if the password is modified before hashing
   if (!this.isModified("password")) return next();
   else {
-    this.password = await bcrypt.hash(this.password, 10); //bcrypt hash function to hash(encrypt) the password
+    this.password = await bcrypt.hash(this.password, 8); //bcrypt hash function to hash(encrypt) the password
     next(); // call next middleware in the stack
   }
 });
 
 // bcrypt compare function to compare the password with hashed password to check if the password is correct
 userSchema.methods.isPasswordCorrect = async function (password) {
+  // password is the plain text password provided by the user during login
+  // this.password is the hashed password stored in the database
+
   return await bcrypt.compare(password, this.password);
 };
 
