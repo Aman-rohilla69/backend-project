@@ -66,7 +66,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 
 // This method will generate an access token for the user
 userSchema.methods.generateAccessToken = function () {
-  Jwt.sign(
+  return Jwt.sign(
     // create a JWT token with the user details and jwt sign uses the secret key to sign the token
     {
       _id: this._id,
@@ -81,7 +81,7 @@ userSchema.methods.generateAccessToken = function () {
 
 // This method will generate a refresh token for the user
 userSchema.methods.generateRefreshToken = function () {
-  Jwt.sign(
+  return Jwt.sign(
     // create a JWT token with the user details and jwt sign uses the secret key to sign the token
     {
       _id: this._id,
